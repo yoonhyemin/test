@@ -39,9 +39,7 @@ if(T1|T2){
 
 # Find Drug Candidate
 Result2_DrugCand <- unique(merge(Result1_Target,DBDC_Target_Full,by='GENE',all.x=T)) #8737
-#      Result2_DrugCand$Disease <- input$checkbox_DiseaseName
-if(length(input$checkbox_DiseaseName)>0)
-  Result2_DrugCand$Disease <- input$DiseaseName
+Result2_DrugCand$Disease <- input$checkbox_DiseaseName
 Result2_DrugCand$Drug_Found <- FALSE
 Result2_DrugCand[!is.na(Result2_DrugCand$Drug),'Drug_Found'] <- TRUE
 Result2_DrugCand$ORGANISM <- factor(Result2_DrugCand$ORGANISM)
@@ -92,6 +90,5 @@ for(cl in Col_select[grepl('Source_|Input_',Col_select,ignore.case = T)]){
 }
 
 colnames(Result5) <-  ColnameSet[ColnameSet$SelectCol %in% Col_select,'RenameCol']
-}
 
 return(Result5)
